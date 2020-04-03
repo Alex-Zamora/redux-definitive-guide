@@ -2,7 +2,8 @@ import { ADD_ARTICLE, FOUND_BAD_WORD } from "../constants/action-types";
 
 const initialState = {
     articles: [],
-    errorMessage: ""
+    errorMessage: "",
+    remoteArticles: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -13,6 +14,8 @@ function rootReducer(state = initialState, action) {
         });
     } else if (action.type === FOUND_BAD_WORD) {
         return { ...state, errorMessage: "you cant add this word" }
+    } else if (action.type === "DATA_LOADED") {
+        return { ...state, remoteArticles: action.payload }
     }
     return state;
 }
